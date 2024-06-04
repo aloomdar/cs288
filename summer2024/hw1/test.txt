@@ -1,0 +1,19 @@
+this is a trest file
+four lines
+some characters
+eleven words
+5 lines now and im trying to fill in the amaount of space in the file so i can get a moderately sized file. 
+my next objective will be to try to get a text heavy file i should stop rying to fix my misrakes i just typed that
+and i already tryied top dix it and i did it agian i am done now hopefully fuck I DID IT AGAIN ok i need to stopo
+this is hopefully moderaltely sized
+ok so up until the end of line 8 it is 436 characters so im going to copy and paste the first 8 lines of this file and i should get 
+moderalktely sized 
+this is a trest file
+  2 four lines
+  3 some characters
+  4 eleven words
+  5 5 lines now and im trying to fill in the amaount of space in the file so i can get a moderately sized file.
+  6 my next objective will be to try to get a text heavy file i should stop rying to fix my misrakes i just typed that
+  7 and i already tryied top dix it and i did it agian i am done now hopefully fuck I DID IT AGAIN ok i need to stopo
+  8 this is hopefully moderaltely sized
+ 
