@@ -29,6 +29,7 @@ if [ -f "$1" ]; then
 		echo "Would you like to display more? If empty, end of file is reached. (Y/n)"
 		read answer
 	done
+	echo "Files modified in the past 24 hours:"
 	menu24
 	read selection
 	traverse "${selection}"

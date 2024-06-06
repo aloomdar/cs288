@@ -14,7 +14,7 @@ touch log.txt
 for arg in "$@"
 do
 	if [ ! -e "${arg}" ]; then
-		echo "Warning! The file ${arg} does not exit."
+		echo "Warning! The file ${arg} does not exist."
 		continue
 	else
 		cp "${arg}" "${arg}"_$(date '+%Y-%m-%d')
