@@ -1,0 +1,2 @@
+	scanf("%d", &num);
+	scanf("%d", &num);

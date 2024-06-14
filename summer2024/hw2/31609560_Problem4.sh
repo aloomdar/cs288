@@ -1,5 +1,6 @@
 #!/bin/bash
 
+touch new.txt name.txt bday.txt temp.txt
 echo "Enter a file name:"
 read file
 grep -E "[a-zA-Z]+ [a-zA-Z]+, [0-9]{4}-[0-9]{2}-[0-9]{2}, [a-zA-Z]+ [a-zA-Z]+, [a-zA-Z]+" "$file" >> new.txt
@@ -21,7 +22,4 @@ done < bday.txt
 sort -k 3 temp.txt >> sorted.txt
 cat sorted.txt
 
-rm -r new.txt
-rm -r name.txt
-rm -r bday.txt
-rm -r temp.txt
+rm new.txt name.txt bday.txt temp.txt

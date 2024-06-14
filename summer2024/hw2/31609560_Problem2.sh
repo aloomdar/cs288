@@ -13,16 +13,16 @@ if [[ $file =~ .*[.c]$ ]]; then
 	echo "Percentage of lines containing printf:" $printPercent "%"
 	echo "Percentage of lines containing scanf:" $scanPercent "%"
 	if [ -e "scanf_log.txt" ]; then
-		sed -n '/scanf/p' $file | tee scanf_log.txt
+		sed -n '/scanf/p' $file >> scanf_log.txt
 	else
 		touch scanf_log.txt
-		sed -n '/scanf/p' $file | tee scanf_log.txt
+		sed -n '/scanf/p' $file >> scanf_log.txt
 	fi
 	if [ -e "printf_log.txt" ]; then
-		sed -n '/printf/p' $file | tee printf_log.txt
+		sed -n '/printf/p' $file >> printf_log.txt
 	else
 		touch printf_log.txt
-		sed -n '/printf/p' $file | tee printf_log.txt
+		sed -n '/printf/p' $file >> printf_log.txt
 	fi
 else
 	echo "You did not enter a C file"

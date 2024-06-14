@@ -4,9 +4,6 @@ traverse (){
 	if [ ! -d "$1" ]; then
 		return
 	fi
-	if [ `ls "$1" | wc -l` -eq 0 ]; then
-		return
-	fi
 	local entries=("$1"/*)
 	local entry
 	for entry in "${entries[@]}"
@@ -19,7 +16,6 @@ traverse (){
 	done
 }
 
-
 touch temp.txt
 touch unique_emails.txt
 
@@ -27,5 +23,3 @@ traverse "$1"
 
 sort temp.txt | uniq > unique_emails.txt
 rm temp.txt
-
-cat unique_emails.txt
