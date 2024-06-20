@@ -6,8 +6,9 @@ int main(){
 	FILE *f1, *f2, *result;
 	int dim1, dim2;
 	
-	f1 = fopen("100dmat.bin", "rb");
-	f2 = fopen("100dmat2.bin", "rb");
+	f1 = fopen("matrix1.bin", "rb");
+	f2 = fopen("matrix2.bin", "rb");
+	result = fopen("result.bin", "wb");
 
 	fread(&dim1, sizeof(dim1), 1, f1);
 	fread(&dim2, sizeof(dim2), 1, f2);
@@ -19,7 +20,8 @@ int main(){
 		printf("Matrix dimensions are not the same or they are greater than 100\n");
 		return 0;
 	}	
-
+	
+		
 	int size = dim1 * dim1 * dim1;
 	printf("Total number of elements: %d\n", size);
 
@@ -47,9 +49,11 @@ int main(){
             for (int k = 0; k < dim1; k++){
 				resmat[i][j][k] = (long long)mat1[i][j][k] * (long long)mat2[i][j][k];
 				printf("Resultants: %lld\n", resmat[i][j][k]);
+				fwrite(&resmat[i][j][k], sizeof(resmat), 1, result);
             }
         }
     }
 	
+	fclose(result);
 	return 0;
 }
