@@ -18,8 +18,7 @@ int main(){
 	printf("Size of mat1: %d First element: %d\n", dim1, elem1);
 	printf("Size of mat2: %d First element: %d\n", dim2, elem2);
 	long long int result;
-//	result = (long long int) elem1 * (long long int) elem2;
-	result = elem1 * elem2;
+	result = (long long int) elem1 * (long long int) elem2;
 	printf("Product of first two elements: %lld\n", result);
 	return 0;
 }

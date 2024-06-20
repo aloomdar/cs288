@@ -6,8 +6,8 @@ int main(){
 	FILE *f1, *f2, *result;
 	int dim1, dim2;
 	
-	f1 = fopen("matrix1.bin", "rb");
-	f2 = fopen("matrix2.bin", "rb");
+	f1 = fopen("100dmat.bin", "rb");
+	f2 = fopen("100dmat2.bin", "rb");
 
 	fread(&dim1, sizeof(dim1), 1, f1);
 	fread(&dim2, sizeof(dim2), 1, f2);
@@ -22,22 +22,21 @@ int main(){
 
 	int size = dim1 * dim1 * dim1;
 	printf("Total number of elements: %d\n", size);
-	
-	int *** mat1[dim1][dim1][dim1];
-	int *** mat2[dim2][dim2][dim2];
-	long long int *** resmat[dim1][dim1][dim1];
+
+	int mat1[dim1][dim1][dim1];
+	int mat2[dim1][dim1][dim1];
+	long long resmat[dim1][dim1][dim1];
 
 	for(int i = 0; i < dim1; i++){
 		for(int j = 0; j < dim1; j++){
-			for (int k = 0; k < dim1; k++){
-				mat1[i][j][k] = (int ***) malloc(dim1 * sizeof(int **));
-				mat2[i][j][k] = (int ***) malloc(dim1 * sizeof(int **));
+			for(int k = 0; k < dim1; k++){
 				fread(&mat1[i][j][k], sizeof(mat1), 1, f1);
 				fread(&mat2[i][j][k], sizeof(mat2), 1, f2);
+				printf("Elem mat1: %d\n", mat1[i][j][k]);
+				printf("Elem mat2: %d\n", mat2[i][j][k]);
 			}
 		}
 	}
-
 	fclose(f1);
 	fclose(f2);
 	
@@ -46,12 +45,8 @@ int main(){
 	for(int i = 0; i < dim1; i++){
 	    for(int j = 0; j < dim1; j++){
             for (int k = 0; k < dim1; k++){
-				resmat[i][j][k] = (long long int ***) malloc(dim1 * sizeof(int **));
-				resmat[i][j][k] = (int)mat1[i][j][k] * (int)mat2[i][j][k];
-				printf("Resultants: %lld\n", ***resmat[i][j][k]);
-				free(mat1[i][j][k]);
-				free(mat2[i][j][k]);
-				free((void *)resmat[i][j][k]);
+				resmat[i][j][k] = (long long)mat1[i][j][k] * (long long)mat2[i][j][k];
+				printf("Resultants: %lld\n", resmat[i][j][k]);
             }
         }
     }
