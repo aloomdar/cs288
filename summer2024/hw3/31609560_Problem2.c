@@ -15,7 +15,7 @@ int countLines(const char *pathname){
 			strcat(path, pathname);
 			strcat(path, "/");
 			strcat(path, entity->d_name);
-			count = countLines(path);
+			count = count + countLines(path);
 		}	
 		else if (entity->d_type == DT_REG){
 			char path [100] = { 0 };
@@ -38,15 +38,15 @@ int countLines(const char *pathname){
 
 int main(){
 	char pathname[1000];
-	printf("Enter a pathname: \n");
+	printf("Enter a directory:\n");
 	scanf("%s", pathname);
 
 	int answer = countLines(pathname);
 	if(answer == -1){
-		printf("error: directory not found.\n");
+		printf("Cannot find directory.\n");
 	}
 	else{
-		printf("The total number of lines across all files in all directories is: %d\n", answer);
+		printf("The total number of lines: %d\n", answer);
 	}
 	return 0;
 }

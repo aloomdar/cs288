@@ -13,46 +13,46 @@ int main(){
 	fread(&dim1, sizeof(dim1), 1, f1);
 	fread(&dim2, sizeof(dim2), 1, f2);
 	
-	printf("Size of matrix1: %d\n", dim1);
-	printf("Size of matrix2: %d\n", dim2);
-
 	if(dim1 != dim2 || dim1 > 100 || dim2 > 200){
 		printf("Matrix dimensions are not the same or they are greater than 100\n");
-		return 0;
+		return -1;
 	}	
-	
-		
-	int size = dim1 * dim1 * dim1;
-	printf("Total number of elements: %d\n", size);
 
-	int mat1[dim1][dim1][dim1];
-	int mat2[dim1][dim1][dim1];
-	long long resmat[dim1][dim1][dim1];
+	int ***mat1 = (int ***) malloc(dim1 * sizeof(int**));
+	int ***mat2 = (int ***) malloc(dim1 * sizeof(int**));
+	long long ***resmat = (long long ***) malloc(dim1 * sizeof(long long **));
 
 	for(int i = 0; i < dim1; i++){
+		mat1[i] = (int **) malloc(dim1 * sizeof(int *));
+		mat2[i] = (int **) malloc(dim1 * sizeof(int *));
+		resmat[i] = (long long **) malloc(dim1 * sizeof(long long *));
 		for(int j = 0; j < dim1; j++){
+			mat1[i][j] = (int *) malloc(dim1 * sizeof(int));
+                	mat2[i][j] = (int *) malloc(dim1 * sizeof(int));
+                	resmat[i][j] = (long long *) malloc(dim1 * sizeof(long long));
 			for(int k = 0; k < dim1; k++){
-				fread(&mat1[i][j][k], sizeof(mat1), 1, f1);
-				fread(&mat2[i][j][k], sizeof(mat2), 1, f2);
-				printf("Elem mat1: %d\n", mat1[i][j][k]);
-				printf("Elem mat2: %d\n", mat2[i][j][k]);
+				fread(&mat1[i][j][k], sizeof(int), 1, f1);
+				fread(&mat2[i][j][k], sizeof(int), 1, f2);
 			}
 		}
 	}
 	fclose(f1);
 	fclose(f2);
 	
-	printf("Elements in result 3d array/matrix\n");
-	printf("----------------------------------\n");
 	for(int i = 0; i < dim1; i++){
-	    for(int j = 0; j < dim1; j++){
-            for (int k = 0; k < dim1; k++){
+	    	for(int j = 0; j < dim1; j++){
+            		for (int k = 0; k < dim1; k++){
 				resmat[i][j][k] = (long long)mat1[i][j][k] * (long long)mat2[i][j][k];
-				printf("Resultants: %lld\n", resmat[i][j][k]);
-				fwrite(&resmat[i][j][k], sizeof(resmat), 1, result);
-            }
-        }
-    }
+				fwrite(&resmat[i][j][k], sizeof(long long), 1, result);
+            		}
+			free(mat1[i][j]);
+			free(mat2[i][j]);
+			free(resmat[i][j]);
+        	}
+		free(mat1[i]);
+		free(mat2[i]);
+		free(resmat[i]);
+    	}
 	
 	fclose(result);
 	return 0;
