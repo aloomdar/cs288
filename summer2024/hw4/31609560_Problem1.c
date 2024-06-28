@@ -35,11 +35,8 @@ int main(){
 		i++;
 	}
 	
-	printf("Original array\n");
-	for(int i = 0; i < size; i++){
-		printf("%d ", A[i]);
-	}
 	radix(A, size);
+
 	printf("Sorted array\n");
 	for(int i = 0; i < size; i++){
 		printf("%d ", A[i]);

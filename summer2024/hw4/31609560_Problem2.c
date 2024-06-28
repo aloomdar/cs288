@@ -2,7 +2,7 @@
 #define max 100
 
 void radix(unsigned int A[], unsigned int n){
-	unsigned int bucket0[n], bucket1[n], mask, count0, count1;
+	unsigned int bucket0[max], bucket1[max], mask, count0, count1;
 	for(int d = 0; d < 32; d++){
 		mask = 1<<d;
 		count1 = count0 = 0;
@@ -23,24 +23,23 @@ void radix(unsigned int A[], unsigned int n){
 	}
 }
 
-void radixSigned(float A[], unsigned int n){
-	unsigned int positive[n], negative[n], negCount, posCount;
+void radixSigned(int A[], unsigned int n){
+	unsigned int positive[max], negative[max], negCount, posCount;
 	negCount = posCount = 0;
 	
-	unsigned int *ptr = (unsigned int *) A;
 	for(int i = 0; i < n; i++){
 		if(A[i] >= 0){
-			positive[posCount++] = ptr[i];
+			positive[posCount++] = A[i];
 		}
 		else{
-			negative[negCount++] = ~ptr[i];
+			negative[negCount++] = ~A[i];
 		}
 	}
 	
 	radix(positive, posCount);
 	radix(negative, negCount);
-	for(int i = negCount - 1; i >=0; i++){
-		A[negCount-1 -i] = ~negative[i];
+	for(int i = negCount - 1; i >=0; i--){
+		A[i] = ~negative[i];
 	}
 	for(int i = 0; i < posCount; i++){
 		A[negCount + i] = positive[i];
@@ -62,16 +61,12 @@ int main(){
 		i++;
 	}
 	
-	printf("Original array\n");
-	for(int i = 0; i < size; i++){
-		printf("%f ", A[i]);
-	}
-
-	radixSigned(A, size);
+	unsigned int *ptr = (unsigned int *)A;
+	radixSigned(ptr, size);
 
 	printf("Sorted array\n");
 	for(int i = 0; i < size; i++){
-		printf("%f ", A[i]);
+		printf("%.2f ", A[i]);
 	}
 	printf("\n");
 }
