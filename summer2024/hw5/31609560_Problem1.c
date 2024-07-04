@@ -1,10 +1,6 @@
 #include <stdio.h>
-
-void hexPrint(unsigned char* arg){
-	for(int i = 7; i >= 0; i--){
-		printf("%02hhx ", *arg+i);
-	}
-}
+#include <string.h>
+#include <ctype.h>
 
 int main(int argc, char* argv[])
 {
@@ -19,6 +15,26 @@ int main(int argc, char* argv[])
 		}
 		printf("| %p\n", &p+i);
 	}
+	
+	char str[2000] = "";
+	
+	for(int i = 0; i < argc; i++){
+		strcat(strcat(str, " "), argv[i]);		
+	}
+	
+	for(int i = 0; i < strlen(str); i++){
+		if(isprint(str[i])){
+			if(str[i] == ' '){
+				printf("%02hhx", str[i]);
+				printf("\(\\");
+				printf("0) ");
+			}
+			else{
+				printf("%02hhx(%c) ", str[i], str[i]);
+			}
+		}
+	}
+	printf("\n");
 	return 0;
 }
 
