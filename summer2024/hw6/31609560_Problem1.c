@@ -11,6 +11,13 @@ struct node *head2 = NULL;
 struct node *tail1 = NULL;
 struct node *tail2 = NULL;
 
+struct node *createNode(int val){
+	struct node *new = (struct node *)malloc(sizeof(struct node));
+	new->value = val;
+	new->next = NULL;
+	return new;
+}
+
 void showList(struct node *head){
 	struct node *Node = (struct node *)malloc(sizeof(struct node));
 	Node = head;
@@ -22,9 +29,8 @@ void showList(struct node *head){
 }
 
 void addFront(int val){
-	struct node *new = (struct node *)malloc(sizeof(struct node));
+	struct node *new = createNode(val);
 	
-	new->value = val;
 	new->next = head1;
 	head1 = new;
 
@@ -34,18 +40,15 @@ void addFront(int val){
 }
 
 void addEnd(int val){
-	struct node *new = (struct node *)malloc(sizeof(struct node));
-	
-	new->value = val;
-	new->next = NULL;
+	struct node *new = createNode(val);
 	
 	if(head2 == NULL){
-		head2 == new;
-		return;
+		head2 = new;
+		return;	
 	}
-	
+
 	struct node* temp = head2;
-	while(temp != NULL){
+	while(temp->next != NULL){
 		temp = temp->next;
 	}
 	temp->next = new;
