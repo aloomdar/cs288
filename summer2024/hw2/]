@@ -1,0 +1,20 @@
+#!/bin/bash
+
+threeAmin=$(grep -hio 'a*.*a.*a.*a.*a*' dictionary.txt | wc -l)
+
+echo "Number of words with at least three a's:" $threeAmin
+
+v1=$(grep -E '^[^e]+e[^e]+e[^e]+e[^e]*$' dictionary.txt | wc -l)
+v2=$(grep -E '^E[^e]+e[^e]+e[^e]*$' dictionary.txt | wc -l)
+total=$(($v1 + $v2))
+echo "Number of words with exactly three e's:" $total
+
+touch doubleE.txt
+grep -Eh '[a-zA-Z]*e{2,}[a-zA-Z]*' dictionary.txt > doubleE.txt
+
+touch mostCommonThree.txt
+grep -Eo '.{4}$' doubleE.txt > mostCommonThree.txt
+
+touch sorted.txt
+sort mostCommonThree.txt | uniq -cd > sorted.txt
+sort -t' ' sorted.txt

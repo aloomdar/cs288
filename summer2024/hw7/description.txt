@@ -1,0 +1,5 @@
+In merge to open, I check the array succ_nodes before continuing. I create a node insert to insert nodes into the open list based on their f value.
+I have a swap function where I add the second tile to the first tile. Then I subtract the second tile from the new value in the first tile and set that value to the second tile. Then I subtract the new second tile from the first tile and I basically swapped the two values without using a temp variable.
+The function heuristic calculates the heuristic value of a tile from it's desired position.
+The function update_fgh is basically just updating the f, g, h values
+In the function expand, I'm creating successor nodes by moving the tile in all possible directions, allocating memory for each move using memcpy. Then I call the actual move functions to move the tile. After moving, I call update fgh to find the heuristic values and move accordingly.
